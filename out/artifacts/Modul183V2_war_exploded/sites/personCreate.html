@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="./../js/personCreate.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<form id="person" name="person">
+    <h3>Login</h3>
+    <table>
+        <tr>
+            <td>Firstname</td>
+            <td><input id="firstname" name="firstname" type="text" size="30" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td>Lastname</td>
+            <td><input id="lastname" name="lastname" type="text" size="30" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td>Sex</td>
+            <label><td>male<input id="man" name="sex" type="radio" value="m" size="30" maxlength="40" required/></td></label>
+            <label><td>female<input id="fem" name="sex" type="radio" value="f" size="30" maxlength="40" required/></td></label>
+        </tr>
+        <tr>
+            <td>Email / Username</td>
+            <td><input id="email" name="email" type="email" size="30" maxlength="40" required/></td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td><input id="password" name="password" type="password" size="30" maxlength="40" required/></td>
+        </tr>
+    </table>
+    <h1 id="message1"></h1>
+    <table>
+        <tr>
+            <td>
+                <button type="submit">Speichern</button>
+            </td>
+            <td>
+                <button type="reset">Zurücksetzen</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<button id="cancel">cancel</button>
+</body>
+</html>
