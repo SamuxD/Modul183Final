@@ -7,6 +7,7 @@ $(document).ready(function()    {
         if($("#man").is(':checked')){
             sex = true;
         }
+
         $
             .ajax({
                 url: "http://localhost:8080/Modul183V2_war_exploded/resources/person/save",
@@ -22,7 +23,7 @@ $(document).ready(function()    {
                 if (xhr.status === 401) {
                     window.location.href = "./login.html";
                 } else {
-                    $("#message").text("Fehler beim speichern der Person");
+                    $("#message1").text("Fehler beim speichern der Person");
                 }
             })
     });

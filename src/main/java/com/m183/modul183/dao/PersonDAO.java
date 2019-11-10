@@ -4,15 +4,16 @@ package main.java.com.m183.modul183.dao;
 import main.java.com.m183.modul183.dao.factory.ConnectionFactory;
 import main.java.com.m183.modul183.person.Person;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 
 public class PersonDAO {
+
+    //private final Logger LOGGER = LoggerFactory.getLogger(getClass());
 
     public boolean authenticateById(String stringId) {
         Connection conn = ConnectionFactory.getConnection();
@@ -33,16 +34,19 @@ public class PersonDAO {
     public int authenticateByPassword(String email, String password) {
         Connection conn = ConnectionFactory.getConnection();
         try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT personId from person where email = ? AND password = ?");
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
+            PreparedStatement pstmt = conn.prepareStatement("SELECT personId from person where email = email AND password = password");
+            //pstmt.setString(1, email);
+            //pstmt.setString(2, password);
+            Statement stmt=conn.createStatement();
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
+                //LOGGER.info("User logged in succesfully");
                 return rs.getInt("personId");
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
+        //LOGGER.info("User Loggin Failed with credentials email:" + email + "and password:" + password);
         return -1;
     }
 
@@ -70,29 +74,6 @@ public class PersonDAO {
         return personList;
     }
 
-    public Person selectPersonById(int personId) {
-        Connection conn = ConnectionFactory.getConnection();
-        Person person = null;
-        try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT personId, sex, firstName, lastName, password, email from person where personId=?");
-            pstmt.setInt(1, personId);
-            ResultSet rs = pstmt.executeQuery();
-            while (rs.next()) {
-                person = new Person();
-                person.setPersonId(rs.getInt("personId"));
-                person.setSex(rs.getBoolean("sex"));
-                person.setFirstname(rs.getString("firstName"));
-                person.setLastname(rs.getString("lastName"));
-                person.setPassword(rs.getString("password"));
-                person.setEmail(rs.getString("email"));
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return person;
-    }
-
-
     public boolean createPerson(String firstname, String lastname, String email, String password, boolean sex) {
         Connection conn = ConnectionFactory.getConnection();
         int state = 0;
@@ -104,6 +85,7 @@ public class PersonDAO {
             pstmt.setString(4, email);
             pstmt.setString(5, password);
             state = pstmt.executeUpdate();
+            //LOGGER.info("new User with email:" + email + "and password:" + password + "has been created");
             return true;
         } catch (SQLException sqle) {
             sqle.printStackTrace();

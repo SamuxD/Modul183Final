@@ -50,8 +50,8 @@ function showPersons(personData) {
     var tableData = "";
     personData.forEach(function (person, index) {
         tableData += "<tr>";
-        tableData += "<td>" + person.email + "</td>";
         tableData += "<td>" + getGender(person.sex) + "</td>";
+        tableData += "<td>" + person.email + "</td>";
         tableData += "<td>" + person.firstname + "</td>";
         tableData += "<td>" + person.lastname + "</td>";
         tableData += "<tr>";

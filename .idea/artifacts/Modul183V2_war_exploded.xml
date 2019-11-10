@@ -9,6 +9,12 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="mysql-connector-java-8.0.17" />
+          <element id="library" level="project" name="slf4j-api-1.7.28" />
+          <element id="library" level="project" name="slf4j-log4j12-1.7.29" />
+          <element id="library" level="project" name="slf4j-simple-1.7.29" />
+          <element id="library" level="project" name="slf4j-log4j12-1.7.291" />
+          <element id="library" level="project" name="json-simple-1.1.1" />
+          <element id="library" level="project" name="json-1.0" />
         </element>
       </element>
     </root>
