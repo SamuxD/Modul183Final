@@ -25,6 +25,7 @@ public class PersonDAO {
                 return true;
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -46,24 +47,24 @@ public class PersonDAO {
     }
 
 
-    public List<Person> selectAllPersons(){
+    public List<Person> selectAllPersons() {
         Connection conn = ConnectionFactory.getConnection();
         List<Person> personList = null;
         try {
             PreparedStatement pstmt = conn.prepareStatement("SELECT personId, sex, firstName, lastName, password, email from person");
             ResultSet rs = pstmt.executeQuery();
             personList = new ArrayList<>();
-            while(rs.next()) {
-            Person p = new Person();
-            p.setPersonId(rs.getInt("personId"));
-            p.setSex(rs.getBoolean("sex"));
-            p.setFirstname(rs.getString("firstName"));
-            p.setLastname(rs.getString("lastName"));
-            p.setPassword(rs.getString("password"));
-            p.setEmail(rs.getString("email"));
-            personList.add(p);
+            while (rs.next()) {
+                Person p = new Person();
+                p.setPersonId(rs.getInt("personId"));
+                p.setSex(rs.getBoolean("sex"));
+                p.setFirstname(rs.getString("firstName"));
+                p.setLastname(rs.getString("lastName"));
+                p.setPassword(rs.getString("password"));
+                p.setEmail(rs.getString("email"));
+                personList.add(p);
             }
-        }    catch (SQLException sqle) {
+        } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
         return personList;

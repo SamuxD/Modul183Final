@@ -33,7 +33,7 @@ public class AESencrypt {
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
             return Base64.getEncoder().encodeToString(cipher.doFinal(strToEncrypt.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception ex) {
-            System.out.println("Error while encrypting: " + ex.toString());
+            System.out.println("Error while encrypting1: " + ex.toString());
         }
         return null;
     }
@@ -45,7 +45,7 @@ public class AESencrypt {
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             return new String(cipher.doFinal(Base64.getDecoder().decode(strToDecrypt)));
         } catch (Exception ex) {
-            System.out.println("Error while decrypting: " + ex.toString());
+            System.out.println("Error while decrypting2: " + ex.toString());
         }
         return null;
     }
