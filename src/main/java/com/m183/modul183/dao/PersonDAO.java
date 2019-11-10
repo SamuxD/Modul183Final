@@ -34,10 +34,9 @@ public class PersonDAO {
     public int authenticateByPassword(String email, String password) {
         Connection conn = ConnectionFactory.getConnection();
         try {
-            PreparedStatement pstmt = conn.prepareStatement("SELECT personId from person where email = email AND password = password");
-            //pstmt.setString(1, email);
-            //pstmt.setString(2, password);
-            Statement stmt=conn.createStatement();
+            PreparedStatement pstmt = conn.prepareStatement("SELECT personId from person where email = ? AND password = ?");
+            pstmt.setString(1, email);
+            pstmt.setString(2, password);
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
                 //LOGGER.info("User logged in succesfully");
